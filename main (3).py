@@ -6,7 +6,4 @@ def gcd(a,b):
             a = a % b
         else:
             b = b % a
-    print(a + b)
-a=0
-b=0
-gcd(a,b)
+    return(a + b)
