@@ -1,0 +1,22 @@
+import pandas as pd
+
+def cheque(price_list, **products):
+    listik = {"price": price_list, "number": products}
+    price = pd.DataFrame(listik)
+    price["cost"] = price["number"] * price["price"]
+    return price.reset_index().rename(columns={"index": "product"}).dropna()
+def srav(price):
+    if price["number"] > 2:
+        return 0.5 * price["cost"]
+    return price["cost"]
+def discount(price):
+    price["cost"] = price.apply(lambda x: srav(x), axis=1)
+    return price
+
+products = ["bread", "milk", "soda", "cream"]
+prices = [37, 58, 99, 72]
+price_list = pd.Series(prices, products)
+result = cheque(price_list, soda=3, milk=2, cream=1)
+print(result)
+with_discount = discount(result)
+print(with_discount)
