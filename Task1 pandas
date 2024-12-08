@@ -1,0 +1,6 @@
+import pandas
+import re
+def length_stats(text: str) -> pandas.Series:
+    data = sorted(filter(lambda x: x,re.split(r"\s+", re.sub(r"[^а-яa-z]", "", str.lower(text)))))
+    return pandas.Series(data=list(map(len, data)), index=data, dtype=int)
+print(length_stats('Мама мыла раму'))
