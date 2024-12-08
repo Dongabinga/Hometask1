@@ -1,0 +1,11 @@
+import pandas as pd
+def cheque(price_list, **products):   
+    listik = {'price':price_list,'number': products}
+    price = pd.DataFrame(listik)
+    price['cost'] = price['number'] * price['price']
+    return price.reset_index().rename(columns {'index':'product'}).dropna()
+products = ['bread', 'milk', 'soda', 'cream']
+prices = [37, 58, 99, 72]
+price_list = pd.Series(prices, products)
+result = cheque(price_list,soda=3,milk=2,cream=1)
+print(result)
