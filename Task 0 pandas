@@ -1,0 +1,43 @@
+python 
+import matplotlib.pyplot as plt
+import numpy as np
+
+# изменяем размер отрисовки
+plt.figure(figsize=[14, 7])
+
+# добавляем общий заголовок
+plt.suptitle('Plot examples', fontsize=20)
+
+# график 1
+plt.subplot(2, 2, 1)
+numbers = np.random.multivariate_normal(mean= [20,10], cov= [[1,0.7],[0.7,1]], size=1000)
+x = numbers[:,0]
+y = numbers[:,1]
+plt.scatter(x, y, edgecolors='black')
+plt.title('Scatter plot example')
+
+# график 2
+plt.subplot(2, 2, 2)
+numbers = np.random.geometric(p=0.1, size=3000)
+plt.hist(numbers, bins=40, color='red')
+plt.title('Hist plot example')
+
+# график 3
+x = np.linspace(0.01,6)
+y1 = np.log(x)
+y2 = np.log(2*x)
+plt.subplot(2, 2, 3)
+plt.plot(x, y1, color='black', label='log(x)')
+plt.plot(x, y2, color='red', label='log(2x)')
+plt.legend(loc='upper left')
+plt.title('Line plot example')
+
+# график 4
+plt.subplot(2, 2, 4)
+numbers=np.random.normal(loc=5, size = 14)
+plt.bar(['2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05',
+ '2022-01-06', '2022-01-07', '2022-01-08', '2022-01-09', '2022-01-10',
+ '2022-01-11', '2022-01-12', '2022-01-13', '2022-01-14'], numbers)
+plt.title('Bar plot example')
+plt.tick_params(axis='x', labelrotation=90)
+plt.show()
